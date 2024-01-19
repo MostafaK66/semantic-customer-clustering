@@ -16,7 +16,7 @@ class DataPreprocessor:
     def create_pipeline(self):
         categorical_transformer_onehot = Pipeline(
             steps=[
-                ("encoder", OneHotEncoder(handle_unknown="ignore", drop="first", sparse=False))
+                ("encoder", OneHotEncoder(handle_unknown="ignore", drop="first", sparse_output=False))
             ])
 
         categorical_transformer_ordinal = Pipeline(
