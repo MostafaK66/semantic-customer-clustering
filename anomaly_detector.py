@@ -3,7 +3,7 @@ from pyod.models.ecod import ECOD
 
 class AnomalyDetector:
     def __init__(self):
-        self.clf = ECOD()
+        self.clf = ECOD(contamination=0.001)
 
     def fit_predict(self, data):
         self.clf.fit(data)
@@ -12,6 +12,11 @@ class AnomalyDetector:
     def add_outlier_column(self, data, outliers):
         data["outliers"] = outliers
         return data
+
+
+
+
+
 
     def separate_data(self, data):
         data_no_outliers = data[data["outliers"] == 0].drop(["outliers"], axis=1)
