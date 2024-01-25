@@ -17,3 +17,4 @@ class AnomalyDetector:
         data_no_outliers = data[data["outliers"] == 0].drop(["outliers"], axis=1)
         data_with_outliers = data.drop(["outliers"], axis=1)
         return data_no_outliers, data_with_outliers
+
