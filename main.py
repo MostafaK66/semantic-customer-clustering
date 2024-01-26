@@ -1,6 +1,6 @@
 from utils import DataPreprocessor
 from anomaly_detector import AnomalyDetector
-from k_means_clustering import SilhouetteAnalysis
+from silhouette_analysis import SilhouetteAnalysis
 import settings
 import plotting
 import warnings
