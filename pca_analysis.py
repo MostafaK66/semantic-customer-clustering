@@ -1,6 +1,7 @@
 import prince
 import settings
 
+
 class PCAAnalysis:
     def __init__(self, random_state=settings.RANDOM_STATE):
         self.random_state = random_state
