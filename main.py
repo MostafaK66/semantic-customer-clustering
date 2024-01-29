@@ -5,6 +5,7 @@ import settings
 import plotting
 import warnings
 from kmeans_clustering import KMeansClustering
+from pca_analysis import PCAAnalysis
 warnings.filterwarnings("ignore", message="The default value of `n_init` will change from 10 to 'auto' in 1.4. Set "
                                           "the value of `n_init` explicitly to suppress the warning")
 
@@ -15,6 +16,7 @@ def main():
     plotter = plotting.DataPlotter()
     silhoutte_analysis = SilhouetteAnalysis()
     kmeans_clustering = KMeansClustering()
+    pca_analysis = PCAAnalysis()
     df = preprocessor.read_data()
     data = preprocessor.fit_transform(df=df)
     outliers = detector.fit_predict(data)
@@ -25,6 +27,7 @@ def main():
     silhoutte_results = silhoutte_analysis.perform_combined_silhouette_analysis(data_no_outliers, k_range=settings.K2_RANGE)
     kmeans_clustering.determine_optimal_clusters(silhoutte_results)
     clusters_predict = kmeans_clustering.fit_predict(data_no_outliers)
+    pca_3d_object, df_pca_3d = pca_analysis.get_pca_3d(df=data_no_outliers, predict=clusters_predict)
 
     print('yes')
 
