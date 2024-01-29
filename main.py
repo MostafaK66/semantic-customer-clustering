@@ -20,7 +20,7 @@ def main():
     data_no_outliers, data_with_outliers = detector.separate_data(data=data)
     plotter.plot_ecdf(data, ['num__age', 'num__balance'])
     silhoutte_analysis.find_optimal_clusters(data=data_no_outliers, k_range=settings.K_RANGE)
-    results_df = silhoutte_analysis.perform_combined_silhouette_analysis(data_no_outliers, k_range=settings.K2_RANGE)
+    silhoutte_results = silhoutte_analysis.perform_combined_silhouette_analysis(data_no_outliers, k_range=settings.K2_RANGE)
 
     print('yes')
 
