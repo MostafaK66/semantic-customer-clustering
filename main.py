@@ -1,9 +1,12 @@
+import numpy as np
+
 from utils import DataPreprocessor
 from anomaly_detector import AnomalyDetector
 from silhouette_analysis import SilhouetteAnalysis
 import settings
 import plotting
 import warnings
+from kmeans_clustering import KMeansClustering
 warnings.filterwarnings("ignore", message="The default value of `n_init` will change from 10 to 'auto' in 1.4. Set "
                                           "the value of `n_init` explicitly to suppress the warning")
 
@@ -13,6 +16,7 @@ def main():
     detector = AnomalyDetector()
     plotter = plotting.DataPlotter()
     silhoutte_analysis = SilhouetteAnalysis()
+    kmeans_clustering = KMeansClustering()
     df = preprocessor.read_data()
     data = preprocessor.fit_transform(df=df)
     outliers = detector.fit_predict(data)
@@ -21,6 +25,8 @@ def main():
     plotter.plot_ecdf(data, ['num__age', 'num__balance'])
     silhoutte_analysis.find_optimal_clusters(data=data_no_outliers, k_range=settings.K_RANGE)
     silhoutte_results = silhoutte_analysis.perform_combined_silhouette_analysis(data_no_outliers, k_range=settings.K2_RANGE)
+    kmeans_clustering.determine_optimal_clusters(silhoutte_results)
+    clusters_predict = kmeans_clustering.fit_predict(data_no_outliers)
 
     print('yes')
 
