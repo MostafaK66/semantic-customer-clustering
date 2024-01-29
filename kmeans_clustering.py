@@ -14,8 +14,8 @@ class KMeansClustering:
         print(f"Optimal number of clusters determined to be: {self.n_clusters}")
 
     def fit_predict(self, data):
-        # if self.km is None:
-        #     raise ValueError("Optimal number of clusters not set. Call determine_optimal_clusters first.")
+        if self.n_clusters is None:  # Check if n_clusters is set
+            raise ValueError("Optimal number of clusters not set. Call determine_optimal_clusters first.")
 
         self.km = KMeans(n_clusters=self.n_clusters,
                          init=self.init,
