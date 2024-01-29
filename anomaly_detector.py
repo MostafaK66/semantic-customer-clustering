@@ -1,9 +1,9 @@
 from pyod.models.ecod import ECOD
-
+import settings
 
 class AnomalyDetector:
     def __init__(self):
-        self.clf = ECOD(contamination=0.001)
+        self.clf = ECOD(contamination=settings.CONTAMINATION)
 
     def fit_predict(self, data):
         self.clf.fit(data)

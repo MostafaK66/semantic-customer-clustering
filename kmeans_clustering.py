@@ -1,7 +1,10 @@
 from sklearn.cluster import KMeans
 
+import settings
+
+
 class KMeansClustering:
-    def __init__(self, init='k-means++', n_init=10, max_iter=100, random_state=42):
+    def __init__(self, n_init=settings.N_INIT, max_iter=settings.MAX_ITER, init=settings.INIT, random_state=settings.RANDOM_STATE):
         self.init = init
         self.n_init = n_init
         self.max_iter = max_iter
@@ -14,7 +17,7 @@ class KMeansClustering:
         print(f"Optimal number of clusters determined to be: {self.n_clusters}")
 
     def fit_predict(self, data):
-        if self.n_clusters is None:  # Check if n_clusters is set
+        if self.n_clusters is None:
             raise ValueError("Optimal number of clusters not set. Call determine_optimal_clusters first.")
 
         self.km = KMeans(n_clusters=self.n_clusters,

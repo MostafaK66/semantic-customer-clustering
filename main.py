@@ -1,5 +1,3 @@
-import numpy as np
-
 from utils import DataPreprocessor
 from anomaly_detector import AnomalyDetector
 from silhouette_analysis import SilhouetteAnalysis

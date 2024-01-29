@@ -7,10 +7,11 @@ from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_samples, silhouette_score
 from yellowbrick.cluster import KElbowVisualizer
 from tqdm import tqdm
+import settings
 
 
 class SilhouetteAnalysis:
-    def __init__(self, random_state=123, n_init='auto'):
+    def __init__(self, random_state=settings.RANDOM_STATE, n_init='auto'):
         self.km = KMeans(init="k-means++", random_state=random_state, n_init=n_init)
 
     def find_optimal_clusters(self, data, k_range):
@@ -37,7 +38,9 @@ class SilhouetteAnalysis:
             silhouette_avg = silhouette_score(data, cluster_labels)
             sample_silhouette_values = silhouette_samples(data, cluster_labels)
 
-            results_df = results_df.append({'n_clusters': n_clusters, 'silhouette_avg': silhouette_avg}, ignore_index=True)
+            # Use pd.concat instead of append
+            new_row = pd.DataFrame({'n_clusters': [n_clusters], 'silhouette_avg': [silhouette_avg]})
+            results_df = pd.concat([results_df, new_row], ignore_index=True)
 
             self.plot_silhouette(ax, cluster_labels, sample_silhouette_values, silhouette_avg, n_clusters)
 
