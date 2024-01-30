@@ -6,8 +6,9 @@ import plotting
 import warnings
 from kmeans_clustering import KMeansClustering
 from pca_analysis import PCAAnalysis
-warnings.filterwarnings("ignore", message="The default value of `n_init` will change from 10 to 'auto' in 1.4. Set "
-                                          "the value of `n_init` explicitly to suppress the warning")
+# warnings.filterwarnings("ignore", message="The default value of `n_init` will change from 10 to 'auto' in 1.4. Set "
+#                                           "the value of `n_init` explicitly to suppress the warning")
+warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
 def main():
@@ -29,6 +30,7 @@ def main():
     clusters_predict = kmeans_clustering.fit_predict(data_no_outliers)
     pca_3d_object, df_pca_3d = pca_analysis.get_pca_3d(df=data_no_outliers, predict=clusters_predict)
     plotter.plot_pca_3d(df=df_pca_3d)
+    pca_analysis.save_eigenvalues_summary(pca_3d_object)
 
     print('yes')
 
