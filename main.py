@@ -6,8 +6,6 @@ import plotting
 import warnings
 from kmeans_clustering import KMeansClustering
 from pca_analysis import PCAAnalysis
-# warnings.filterwarnings("ignore", message="The default value of `n_init` will change from 10 to 'auto' in 1.4. Set "
-#                                           "the value of `n_init` explicitly to suppress the warning")
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
