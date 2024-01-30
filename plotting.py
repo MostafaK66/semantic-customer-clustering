@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import os
-
+import plotly.express as px
 
 class DataPlotter:
     def __init__(self):
@@ -33,3 +33,39 @@ class DataPlotter:
         plt.tight_layout()
         plt.savefig(f'{self.output_dir}/ecdf_subplots_outliers.png')
         plt.close()
+
+    def plot_pca_3d(self, df, title="PCA Space", opacity=0.8, width_line=0.1):
+        df = df.astype({"cluster": "object"})
+        df = df.sort_values("cluster")
+
+        columns = df.columns[0:3].tolist()
+
+        fig = px.scatter_3d(df,
+                            x=columns[0],
+                            y=columns[1],
+                            z=columns[2],
+                            color='cluster',
+                            template="plotly",
+                            color_discrete_sequence=px.colors.qualitative.Vivid,
+                            title=title).update_traces(
+            marker={
+                "size": 4,
+                "opacity": opacity,
+                "line": {
+                    "width": width_line,
+                    "color": "black",
+                }
+            }
+        ).update_layout(
+            width=1000,
+            height=800,
+            autosize=False,
+            showlegend=True,
+            legend=dict(title_font_family="Times New Roman",
+                        font=dict(size=20)),
+            scene=dict(xaxis=dict(title='comp1', titlefont_color='black'),
+                       yaxis=dict(title='comp2', titlefont_color='black'),
+                       zaxis=dict(title='comp3', titlefont_color='black')),
+            font=dict(family="Gilroy", color='black', size=15))
+
+        fig.show()

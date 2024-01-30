@@ -28,6 +28,7 @@ def main():
     kmeans_clustering.determine_optimal_clusters(silhoutte_results)
     clusters_predict = kmeans_clustering.fit_predict(data_no_outliers)
     pca_3d_object, df_pca_3d = pca_analysis.get_pca_3d(df=data_no_outliers, predict=clusters_predict)
+    plotter.plot_pca_3d(df=df_pca_3d)
 
     print('yes')
 
