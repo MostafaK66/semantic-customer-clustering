@@ -10,13 +10,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\output\eigenvalues_summary.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\output\eigenvalues_summary_pca.csv">
           <value>
             <Attribute>

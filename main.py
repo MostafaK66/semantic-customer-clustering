@@ -6,6 +6,7 @@ import plotting
 import warnings
 from kmeans_clustering import KMeansClustering
 from pca_analysis import PCAAnalysis
+from tsne_analysis import TSNEAnalysis
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
@@ -16,6 +17,7 @@ def main():
     silhoutte_analysis = SilhouetteAnalysis()
     kmeans_clustering = KMeansClustering()
     pca_analysis = PCAAnalysis()
+    tsne_analysis = TSNEAnalysis()
     df = preprocessor.read_data()
     data = preprocessor.fit_transform(df=df)
     outliers = detector.fit_predict(data)
@@ -29,6 +31,7 @@ def main():
     pca_3d_object, df_pca_3d = pca_analysis.get_pca_3d(df=data_no_outliers, predict=clusters_predict)
     plotter.plot_pca_3d(df=df_pca_3d)
     pca_analysis.save_eigenvalues_summary(pca_3d_object)
+    tsne_analysis.get_tsne_3d(df=data_no_outliers, predict=clusters_predict)
 
     print('yes')
 
