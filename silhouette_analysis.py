@@ -38,7 +38,6 @@ class SilhouetteAnalysis:
             silhouette_avg = silhouette_score(data, cluster_labels)
             sample_silhouette_values = silhouette_samples(data, cluster_labels)
 
-            # Use pd.concat instead of append
             new_row = pd.DataFrame({'n_clusters': [n_clusters], 'silhouette_avg': [silhouette_avg]})
             results_df = pd.concat([results_df, new_row], ignore_index=True)
 
