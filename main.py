@@ -29,9 +29,10 @@ def main():
     kmeans_clustering.determine_optimal_clusters(silhoutte_results)
     clusters_predict = kmeans_clustering.fit_predict(data_no_outliers)
     pca_3d_object, df_pca_3d = pca_analysis.get_pca_3d(df=data_no_outliers, predict=clusters_predict)
-    plotter.plot_pca_3d(df=df_pca_3d)
+    plotter.plot_3d(df=df_pca_3d, title="PCA Space")
     pca_analysis.save_eigenvalues_summary(pca_3d_object)
-    tsne_analysis.get_tsne_3d(df=data_no_outliers, predict=clusters_predict)
+    tsne_3d_object, df_tsne_3d = tsne_analysis.get_tsne_3d(df=data_no_outliers, predict=clusters_predict)
+    plotter.plot_3d(df=df_tsne_3d, title="t-SNE Space")
 
     print('yes')
 

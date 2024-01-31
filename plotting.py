@@ -34,7 +34,7 @@ class DataPlotter:
         plt.savefig(f'{self.output_dir}/ecdf_subplots_outliers.png')
         plt.close()
 
-    def plot_pca_3d(self, df, title="PCA Space", opacity=0.8, width_line=0.1):
+    def plot_3d(self, df, title, opacity=0.8, width_line=0.1):
         df = df.astype({"cluster": "object"})
         df = df.sort_values("cluster")
 
