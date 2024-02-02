@@ -29,8 +29,6 @@ class AnomalyDetector:
 
         return df[~df.index.isin(outlier_indices)]
 
-    # Example usage:
-    # filtered_df = filter_outliers(df, index_with_outliers)
 
 
 
