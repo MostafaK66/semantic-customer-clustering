@@ -45,7 +45,7 @@ class DataPreprocessor:
         return pd.DataFrame(transformed_data, columns=columns)
 
     def encode_and_transform(self, df):
-        columns_to_encode = ['age', 'job', 'marital', 'education', 'default', 'balance', 'housing', 'loan']
+        columns_to_encode = ['job', 'marital', 'education', 'default', 'housing', 'loan']
 
         preprocessor = ColumnTransformer(
             transformers=[
