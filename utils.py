@@ -2,6 +2,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder, PowerTransformer
 import pandas as pd
+import matplotlib.pyplot as plt
 
 
 class DataPreprocessor:
@@ -42,4 +43,25 @@ class DataPreprocessor:
         transformed_data = self.pipeline.transform(df)
         columns = self.pipeline.get_feature_names_out().tolist()
         return pd.DataFrame(transformed_data, columns=columns)
+
+    def encode_and_transform(self, df):
+        columns_to_encode = ['age', 'job', 'marital', 'education', 'default', 'balance', 'housing', 'loan']
+
+        preprocessor = ColumnTransformer(
+            transformers=[
+                ('ordinal', OrdinalEncoder(), columns_to_encode)
+            ],
+            remainder='passthrough'
+        )
+
+        pipe = Pipeline([
+            ('preprocessor', preprocessor),
+            ('scaler', PowerTransformer())
+        ])
+
+        pipe_fit = pipe.fit(df)
+
+        return pd.DataFrame(pipe_fit.transform(df), columns=df.columns)
+
+
 
