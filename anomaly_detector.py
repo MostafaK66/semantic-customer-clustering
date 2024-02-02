@@ -15,6 +15,22 @@ class AnomalyDetector:
 
     def separate_data(self, data):
         data_no_outliers = data[data["outliers"] == 0].drop(["outliers"], axis=1)
-        data_with_outliers = data.drop(["outliers"], axis=1)
-        return data_no_outliers, data_with_outliers
+
+        data_with_outliers = data[data["outliers"] == 1].drop(["outliers"], axis=1)
+
+        indices_no_outliers = data[data["outliers"] == 0].index.to_frame(name='index_no_outliers')
+
+        indices_with_outliers = data[data["outliers"] == 1].index.to_frame(name='index_with_outliers')
+
+        return data_no_outliers, data_with_outliers, indices_no_outliers, indices_with_outliers
+
+    def filter_outliers(self, df, index_with_outliers):
+        outlier_indices = index_with_outliers['index_with_outliers'].tolist()
+
+        return df[~df.index.isin(outlier_indices)]
+
+    # Example usage:
+    # filtered_df = filter_outliers(df, index_with_outliers)
+
+
 
