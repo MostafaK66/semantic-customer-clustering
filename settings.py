@@ -15,15 +15,10 @@ TSNE_N_ITER = 5000
 
 """
 
-pipe = Pipeline([('scaler', PowerTransformer())])
+numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
 
-df_aux = pd.DataFrame(pipe_fit.fit_transform(df_no_outliers[["age", "balance"]] ), columns = ["age", "balance"])
-df_no_outliers_norm = df_no_outliers.copy()
-
-# Replace age and balance columns by preprocessed values
-df_no_outliers_norm = df_no_outliers_norm.drop(["age", "balance"], axis = 1)
-df_no_outliers_norm["age"] = df_aux["age"].values
-df_no_outliers_norm["balance"] = df_aux["balance"].values
-df_no_outliers_norm
+categorical_columns = df_no_outliers_norm.select_dtypes(exclude=numerics).columns
+print(categorical_columns)
+categorical_columns_index = [df_no_outliers_norm.columns.get_loc(col) for col in categorical_columns]
 
 """

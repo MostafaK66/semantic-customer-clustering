@@ -14,6 +14,7 @@ def main():
     transformed_columns = preprocessor.transform_columns(df_no_outliers, ["age", "balance"])
     df_no_outliers_norm = preprocessor.integrate_transformed_columns(df_no_outliers, transformed_columns,
                                                                      ["age", "balance"])
+    categorical_columns, categorical_columns_index = preprocessor.identify_and_index_categorical_columns(df_no_outliers_norm)
 
     print('yes')
 
