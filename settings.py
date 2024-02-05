@@ -13,4 +13,17 @@ TSNE_PERPLEXITY = 200
 TSNE_N_ITER = 5000
 
 
+"""
 
+pipe = Pipeline([('scaler', PowerTransformer())])
+
+df_aux = pd.DataFrame(pipe_fit.fit_transform(df_no_outliers[["age", "balance"]] ), columns = ["age", "balance"])
+df_no_outliers_norm = df_no_outliers.copy()
+
+# Replace age and balance columns by preprocessed values
+df_no_outliers_norm = df_no_outliers_norm.drop(["age", "balance"], axis = 1)
+df_no_outliers_norm["age"] = df_aux["age"].values
+df_no_outliers_norm["balance"] = df_aux["balance"].values
+df_no_outliers_norm
+
+"""

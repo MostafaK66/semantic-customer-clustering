@@ -9,6 +9,7 @@ class DataPreprocessor:
     def __init__(self, file_path):
         self.file_path = file_path
         self.pipeline = self.create_pipeline()
+        self.pipe = Pipeline([('scaler', PowerTransformer())])
 
     def read_data(self):
         df = pd.read_csv(self.file_path, sep=";")
@@ -44,24 +45,20 @@ class DataPreprocessor:
         columns = self.pipeline.get_feature_names_out().tolist()
         return pd.DataFrame(transformed_data, columns=columns)
 
-    def encode_and_transform(self, df):
-        columns_to_encode = ['job', 'marital', 'education', 'default', 'housing', 'loan']
+    def transform_columns(self, df, columns):
 
-        preprocessor = ColumnTransformer(
-            transformers=[
-                ('ordinal', OrdinalEncoder(), columns_to_encode)
-            ],
-            remainder='passthrough'
-        )
+        return pd.DataFrame(self.pipe.fit_transform(df[columns]), columns=columns)
 
-        pipe = Pipeline([
-            ('preprocessor', preprocessor),
-            ('scaler', PowerTransformer())
-        ])
+    def integrate_transformed_columns(self, original_df, transformed_df, columns):
+        df_no_outliers_norm = original_df.copy()
+        df_no_outliers_norm = df_no_outliers_norm.drop(columns, axis=1)
 
-        pipe_fit = pipe.fit(df)
+        for col in columns:
+            df_no_outliers_norm[col] = transformed_df[col].values
 
-        return pd.DataFrame(pipe_fit.transform(df), columns=df.columns)
+        return df_no_outliers_norm
+
+
 
 
 
