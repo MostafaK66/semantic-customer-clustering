@@ -12,6 +12,8 @@ def main():
     df = detector.add_outlier_column(data=df, outliers=outliers)
     df_no_outliers, df_with_outliers, indices_no_outliers, indices_with_outliers = detector.separate_data(data=df)
     transformed_columns = preprocessor.transform_columns(df_no_outliers, ["age", "balance"])
+    df_no_outliers_norm = preprocessor.integrate_transformed_columns(df_no_outliers, transformed_columns,
+                                                                     ["age", "balance"])
 
     print('yes')
 
