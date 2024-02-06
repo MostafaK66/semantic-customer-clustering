@@ -2,11 +2,13 @@ from utils import DataPreprocessor
 import settings
 from anomaly_detector import AnomalyDetector
 from kprototype_clustering import KPrototypeClustering
+from plotting import DataPlotter
 
 def main():
     preprocessor = DataPreprocessor(settings.file_path)
     detector = AnomalyDetector()
     prototype_clustering = KPrototypeClustering()
+    plotter = DataPlotter()
     df = preprocessor.read_data()
     data = preprocessor.fit_transform(df=df)
     outliers = detector.fit_predict(data)
@@ -17,6 +19,7 @@ def main():
                                                                      ["age", "balance"])
     categorical_columns, categorical_columns_index = preprocessor.identify_and_index_categorical_columns(df_no_outliers_norm)
     df_cost = prototype_clustering.find_optimal_clusters(df_no_outliers=df_no_outliers_norm, categorical_columns_index=categorical_columns_index)
+    plotter.plot_clustering_cost(df_cost=df_cost)
 
     print('yes')
 

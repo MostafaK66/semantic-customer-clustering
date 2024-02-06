@@ -1,9 +1,10 @@
 import pandas as pd
 from kmodes.kprototypes import KPrototypes
+import settings
 
 
 class KPrototypeClustering:
-    def __init__(self, random_state=0):
+    def __init__(self, random_state=settings.RANDOM_STATE):
         self.random_state = random_state
 
     def find_optimal_clusters(self, df_no_outliers, categorical_columns_index):
