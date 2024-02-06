@@ -62,7 +62,6 @@ class DataPreprocessor:
         numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
 
         categorical_columns = df.select_dtypes(exclude=numerics).columns
-        print(categorical_columns)
 
         categorical_columns_index = [df.columns.get_loc(col) for col in categorical_columns]
 
