@@ -10,9 +10,9 @@ class KPrototypeClustering:
 
     def find_optimal_clusters(self, df_no_outliers, categorical_columns_index):
         cost = []
-        range_ = range(2, 15)
+        range_ = range(2, 5)
 
-        df_sampled = df_no_outliers.sample(frac=0.99, replace=True, random_state=self.random_state)
+        df_sampled = df_no_outliers.sample(frac=0.1, replace=True, random_state=self.random_state)
 
         for cluster in tqdm(range_, desc="Running KPrototype Clustering"):
             kprototype = KPrototypes(n_jobs=-1, n_clusters=cluster, init='Huang', random_state=self.random_state)
