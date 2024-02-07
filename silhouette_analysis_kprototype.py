@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 from matplotlib import cm
 import os
 
+
 class SilhouetteAnalysisKPrototype:
     def __init__(self, random_state=settings.RANDOM_STATE):
         self.random_state = random_state
@@ -22,7 +23,7 @@ class SilhouetteAnalysisKPrototype:
 
     def find_optimal_clusters(self, sampled_df, categorical_columns_index):
         cost = []
-        range_ = range(2, 5)  # Adjust this range as needed
+        range_ = range(2, 15)
 
         silhouette_scores = []
 
