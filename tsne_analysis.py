@@ -10,7 +10,7 @@ class TSNEAnalysis:
     def get_tsne_3d(self, df, predict):
         #TODO: Due to computation power I reduced the number of datapoints!!
         sampling_data = df.sample(frac=settings.SAMPLING_FRACTION, replace=True, random_state=self.random_state)
-        sampling_clusters = pd.DataFrame(predict).sample(frac=0.1, replace=True, random_state=self.random_state)[0].values
+        sampling_clusters = pd.DataFrame(predict).sample(frac=settings.SAMPLING_FRACTION, replace=True, random_state=self.random_state)[0].values
         tsne_3d_object = TSNE(
             n_components=settings.N_COMPONENTS,
             learning_rate=settings.TSNE_LEARNING_RATE,
