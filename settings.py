@@ -1,6 +1,7 @@
 file_path = 'data/train_data.csv'
 K_RANGE = (2, 5)
 K2_RANGE = range(2, 5)
+K_PROTOTYPE_RANGE = range(2, 10)
 N_INIT = 10
 MAX_ITER = 100
 INIT = 'k-means++'

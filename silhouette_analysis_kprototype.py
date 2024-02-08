@@ -23,7 +23,7 @@ class SilhouetteAnalysisKPrototype:
 
     def find_optimal_clusters(self, sampled_df, categorical_columns_index):
         cost = []
-        range_ = range(2, 5)
+        range_ = settings.K_PROTOTYPE_RANGE
 
         silhouette_scores = []
 
