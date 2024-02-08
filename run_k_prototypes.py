@@ -4,9 +4,11 @@ from anomaly_detector import AnomalyDetector
 from kprototype_clustering import KPrototypeClustering
 from plotting import DataPlotter
 from silhouette_analysis_kprototype import SilhouetteAnalysisKPrototype
+import time
 
 
 def main():
+    start_time = time.time()
     preprocessor = DataPreprocessor(settings.file_path)
     detector = AnomalyDetector()
     prototype_clustering = KPrototypeClustering()
@@ -25,6 +27,10 @@ def main():
     silhouette_scores_mixed = silhouette_analysis.find_optimal_clusters(sampled_df=sampled_df, categorical_columns_index=categorical_columns_index)
     prototype_clustering.determine_optimal_clusters(silhouette_scores_mixed=silhouette_scores_mixed)
     clusters_kprototype = prototype_clustering.fit_predict_kprototypes(df=sampled_df, categorical_columns_index=categorical_columns_index)
+
+    end_time = time.time()
+    total_time_minutes = (end_time - start_time) / 60
+    print(f"Total running time for KPrototype Clustering: {total_time_minutes:.2f} minutes")
 
     print('yes')
 

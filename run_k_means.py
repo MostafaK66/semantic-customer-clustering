@@ -8,11 +8,13 @@ from kmeans_clustering import KMeansClustering
 from pca_analysis import PCAAnalysis
 from tsne_analysis import TSNEAnalysis
 from feature_importance import FeatureImportanceAnalyzer
+import time
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
 def main():
+    start_time = time.time()
     preprocessor = DataPreprocessor(settings.file_path)
     detector = AnomalyDetector()
     plotter = plotting.DataPlotter()
@@ -39,6 +41,10 @@ def main():
     plotter.plot_3d(df=df_tsne_3d, title="t-SNE Space")
     tsne_analysis.save_tsne_embeddings(tsne_3d_object=tsne_3d_object, df=df_tsne_3d)
     feature_analyzer.generate_shap_summary(filtered_df=filtered_df, clusters_predict=clusters_predict)
+
+    end_time = time.time()
+    total_time_minutes = (end_time - start_time) / 60
+    print(f"Total running time for KMeans Clustering: {total_time_minutes:.2f} minutes")
 
     print('yes')
 
