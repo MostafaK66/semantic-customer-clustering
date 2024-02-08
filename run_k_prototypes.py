@@ -5,6 +5,7 @@ from kprototype_clustering import KPrototypeClustering
 from plotting import DataPlotter
 from silhouette_analysis_kprototype import SilhouetteAnalysisKPrototype
 
+
 def main():
     preprocessor = DataPreprocessor(settings.file_path)
     detector = AnomalyDetector()
@@ -23,11 +24,11 @@ def main():
     # df_cost = prototype_clustering.find_optimal_clusters(df_no_outliers=df_no_outliers_norm, categorical_columns_index=categorical_columns_index)
     # plotter.plot_clustering_cost(df_cost=df_cost)
     sampled_df = Silhouette_analysis.sample_dataframe(df=df_no_outliers_norm, frac=settings.SAMPLING_FRACTION)
-    Silhouette_scores_mixed = Silhouette_analysis.find_optimal_clusters(sampled_df=sampled_df, categorical_columns_index=categorical_columns_index)
-
+    silhouette_scores_mixed = Silhouette_analysis.find_optimal_clusters(sampled_df=sampled_df, categorical_columns_index=categorical_columns_index)
+    prototype_clustering.determine_optimal_clusters(silhouette_scores_mixed=silhouette_scores_mixed)
+    clusters_kprototype = prototype_clustering.fit_predict_kprototypes(df=sampled_df, categorical_columns_index=categorical_columns_index)
 
     print('yes')
-
 
 
 if __name__ == "__main__":

@@ -23,7 +23,7 @@ class SilhouetteAnalysisKPrototype:
 
     def find_optimal_clusters(self, sampled_df, categorical_columns_index):
         cost = []
-        range_ = range(2, 15)
+        range_ = range(2, 5)
 
         silhouette_scores = []
 
@@ -39,10 +39,9 @@ class SilhouetteAnalysisKPrototype:
 
                 silhouette_scores.append((cluster_labels, silhouette_vals, avg_silhouette, cluster))
 
-                print(f"Cluster: {cluster}, Silhouette Score: {avg_silhouette}")
 
         self.plot_silhouette(silhouette_scores)
-        return pd.DataFrame({'Cluster': range_, 'Cost': cost})
+        return pd.DataFrame({'n_clusters': range_, 'silhouette_avg': cost})
 
     def plot_silhouette(self, silhouette_scores):
         n_rows = len(silhouette_scores)
