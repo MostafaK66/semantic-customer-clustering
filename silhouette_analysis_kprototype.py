@@ -11,8 +11,12 @@ import os
 
 
 class SilhouetteAnalysisKPrototype:
-    def __init__(self, random_state=settings.RANDOM_STATE):
+    def __init__(self, n_init=settings.N_INIT, max_iter=settings.MAX_ITER, gamma=settings.GAMMA, init=settings.KPROTOTYPE_INIT, random_state=settings.RANDOM_STATE):
         self.random_state = random_state
+        self.n_init = n_init
+        self.max_iter = max_iter
+        self.gamma = gamma
+        self.init = init
 
     def sample_dataframe(self, df, frac):
         return df.sample(frac=frac, replace=True, random_state=self.random_state)
@@ -28,7 +32,7 @@ class SilhouetteAnalysisKPrototype:
         silhouette_scores = []
 
         for cluster in tqdm(range_, desc="Running KPrototype Clustering"):
-            kprototype = KPrototypes(n_jobs=-1, n_clusters=cluster, init='Huang', random_state=self.random_state)
+            kprototype = KPrototypes(n_jobs=-1, n_clusters=cluster, n_init=self.n_init, gamma=self.gamma, max_iter=self.max_iter, init=self.init, random_state=self.random_state)
             cluster_labels = kprototype.fit_predict(sampled_df, categorical=categorical_columns_index)
             cost.append(kprototype.cost_)
 
