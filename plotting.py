@@ -69,13 +69,3 @@ class DataPlotter:
             font=dict(family="Gilroy", color='black', size=15))
 
         fig.show()
-
-    # def plot_clustering_cost(self, df_cost):
-    #     plt.figure(figsize=(10, 6))
-    #     plt.plot(df_cost['Cluster'], df_cost['Cost'], marker='o')
-    #     plt.title('Clustering Cost vs Number of Clusters')
-    #     plt.xlabel('Number of Clusters')
-    #     plt.ylabel('Cost')
-    #     plt.grid(True)
-    #     plt.savefig(os.path.join(self.output_dir, 'clustering_cost.png'))
-    #     plt.close()
