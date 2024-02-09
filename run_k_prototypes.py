@@ -4,6 +4,7 @@ from anomaly_detector import AnomalyDetector
 from kprototype_clustering import KPrototypeClustering
 from plotting import DataPlotter
 from silhouette_analysis_kprototype import SilhouetteAnalysisKPrototype
+from mca_analysis import MCAAnalysis
 import time
 
 
@@ -14,6 +15,7 @@ def main():
     prototype_clustering = KPrototypeClustering()
     plotter = DataPlotter()
     silhouette_analysis = SilhouetteAnalysisKPrototype()
+    mca_analysis = MCAAnalysis()
     df = preprocessor.read_data()
     data = preprocessor.fit_transform(df=df)
     outliers = detector.fit_predict(data)
@@ -27,6 +29,8 @@ def main():
     silhouette_scores_mixed = silhouette_analysis.find_optimal_clusters(sampled_df=sampled_df, categorical_columns_index=categorical_columns_index)
     prototype_clustering.determine_optimal_clusters(silhouette_scores_mixed=silhouette_scores_mixed)
     clusters_kprototype = prototype_clustering.fit_predict_kprototypes(df=sampled_df, categorical_columns_index=categorical_columns_index)
+    mca, mca_3d_df = mca_analysis.get_MCA_3d(df=sampled_df, predict=clusters_kprototype)
+    plotter.plot_3d(df=mca_3d_df, title="MCA Space")
 
     end_time = time.time()
     total_time_minutes = (end_time - start_time) / 60
