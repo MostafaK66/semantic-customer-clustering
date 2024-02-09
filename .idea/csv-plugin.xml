@@ -10,14 +10,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\output\eigenvalues_summary_pca.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\output\tsne_embeddings.csv">
+        <entry key="\output\silhouette_scores.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

@@ -33,15 +33,21 @@ class SilhouetteAnalysisKPrototype:
             cost.append(kprototype.cost_)
 
             if cluster > 1:
-                distance_matrix = self.calculate_distance_matrix(sampled_df)
+                distance_matrix = self.calculate_distance_matrix(sampled_df)  # use Gower's algorithm to calculate distance
                 silhouette_vals = silhouette_samples(distance_matrix, cluster_labels, metric='precomputed')
                 avg_silhouette = np.mean(silhouette_vals)
 
                 silhouette_scores.append((cluster_labels, silhouette_vals, avg_silhouette, cluster))
 
-
         self.plot_silhouette(silhouette_scores)
-        return pd.DataFrame({'n_clusters': range_, 'silhouette_avg': cost})
+
+        silhouette_df = pd.DataFrame([(c, a) for _, _, a, c in silhouette_scores],
+                                     columns=['n_clusters', 'silhouette_avg'])
+        output_dir = os.path.join(os.getcwd(), "output")
+        os.makedirs(output_dir, exist_ok=True)
+        silhouette_df.to_csv(os.path.join(output_dir, "silhouette_scores.csv"), index=False)
+
+        return silhouette_df
 
     def plot_silhouette(self, silhouette_scores):
         n_rows = len(silhouette_scores)
@@ -69,7 +75,8 @@ class SilhouetteAnalysisKPrototype:
             size_cluster_i = ith_cluster_silhouette_values.shape[0]
             y_upper = y_lower + size_cluster_i
             color = cm.nipy_spectral(float(i) / n_clusters)
-            ax.fill_betweenx(np.arange(y_lower, y_upper), 0, ith_cluster_silhouette_values, facecolor=color, edgecolor=color, alpha=0.7)
+            ax.fill_betweenx(np.arange(y_lower, y_upper), 0, ith_cluster_silhouette_values, facecolor=color,
+                             edgecolor=color, alpha=0.7)
             ax.text(-0.05, y_lower + 0.5 * size_cluster_i, str(i))
             y_lower = y_upper + 10
 
@@ -81,10 +88,3 @@ class SilhouetteAnalysisKPrototype:
         ax.axvline(x=silhouette_avg, color="red", linestyle="--")
         ax.set_yticks([])
         ax.set_xticks([-0.1, 0, 0.2, 0.4, 0.6, 0.8, 1])
-
-
-
-
-
-
-
