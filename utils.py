@@ -3,6 +3,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder, PowerTransformer
 import pandas as pd
 from sentence_transformers import SentenceTransformer
+import os
 
 class DataPreprocessor:
     def __init__(self, file_path):
@@ -82,10 +83,8 @@ class DataPreprocessor:
         sentences = df.apply(lambda x: compile_text(x), axis=1).tolist()
         model = SentenceTransformer("sentence-transformers/paraphrase-MiniLM-L6-v2")
         output = model.encode(sentences=sentences, show_progress_bar=True, normalize_embeddings=True)
-        df_embedding = pd.DataFrame(output)
-        df_embedding.to_csv("embedding_train.csv", index=False)
 
-        return df_embedding
+        return pd.DataFrame(output)
 
 
 
