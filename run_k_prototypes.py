@@ -6,6 +6,8 @@ from plotting import DataPlotter
 from silhouette_analysis_kprototype import SilhouetteAnalysisKPrototype
 from mca_analysis import MCAAnalysis
 import time
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
 def main():
