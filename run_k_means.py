@@ -13,7 +13,7 @@ import time
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
-def main():
+def k_means():
     start_time = time.time()
     preprocessor = DataPreprocessor(settings.file_path)
     detector = AnomalyDetector()
@@ -50,6 +50,6 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    k_means()
 
 

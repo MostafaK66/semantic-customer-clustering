@@ -10,7 +10,7 @@ import warnings
 from tsne_analysis import TSNEAnalysis
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
-def main():
+def llm_kmeans():
     start_time = time.time()
     preprocessor = DataPreprocessor(settings.file_path)
     detector = AnomalyDetector()
@@ -47,4 +47,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    llm_kmeans()
