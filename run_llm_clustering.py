@@ -37,7 +37,6 @@ def llm_kmeans():
     pca_analysis.save_eigenvalues_summary(pca_3d_object=pca_3d_object, file_name='eigenvalues_llm_kmeans_pca.csv')
     tsne_3d_object, df_tsne_3d = tsne_analysis.get_tsne_3d(df=data_no_outliers, predict=clusters_predict)
     plotter.plot_3d(df=df_tsne_3d, title="t-SNE LLM-Kmeans Space")
-    tsne_analysis.save_tsne_embeddings(tsne_3d_object=tsne_3d_object, df=df_tsne_3d)
     tsne_analysis.save_tsne_embeddings(tsne_3d_object=tsne_3d_object, df=df_tsne_3d,
                                        file_name='tsne_embeddings_llm-kmeans.csv')
 
