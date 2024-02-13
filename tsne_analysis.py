@@ -26,7 +26,7 @@ class TSNEAnalysis:
 
         return tsne_3d_object, df_tsne_3d
 
-    def save_tsne_embeddings(self, tsne_3d_object, df):
+    def save_tsne_embeddings(self, tsne_3d_object, df, file_name):
         output_dir = 'output'
         if not os.path.exists(output_dir):
             os.makedirs(output_dir)
@@ -35,7 +35,7 @@ class TSNEAnalysis:
 
         df_tsne = pd.DataFrame(tsne_embeddings, columns=['comp1', 'comp2', 'comp3'])
 
-        csv_file_path = os.path.join(output_dir, 'tsne_embeddings.csv')
+        csv_file_path = os.path.join(output_dir, file_name)
         df_tsne.to_csv(csv_file_path, index=False)
 
         print(f"t-SNE embeddings saved to {csv_file_path}")

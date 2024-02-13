@@ -28,7 +28,7 @@ class PCAAnalysis:
 
         return pca_3d_object, df_pca_3d
 
-    def save_eigenvalues_summary(self, pca_3d_object):
+    def save_eigenvalues_summary(self, pca_3d_object, file_name):
 
         output_dir = 'output'
         if not os.path.exists(output_dir):
@@ -39,7 +39,7 @@ class PCAAnalysis:
         df_eigenvalues = pd.DataFrame(eigenvalues_summary, columns=['eigenvalue'])
         df_eigenvalues['component'] = df_eigenvalues.index + 1
 
-        csv_file_path = os.path.join(output_dir, 'eigenvalues_summary_pca.csv')
+        csv_file_path = os.path.join(output_dir, file_name)
         df_eigenvalues.to_csv(csv_file_path, index=False)
 
         print(f"Eigenvalues summary saved to {csv_file_path}")

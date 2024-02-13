@@ -26,7 +26,7 @@ class SilhouetteAnalysis:
         self.visualizer.show(outpath=plot_path)
         print(f"Elbow method plot saved to {plot_path}")
 
-    def perform_combined_silhouette_analysis(self, data, k_range):
+    def perform_combined_silhouette_analysis(self, data, k_range, file_name):
         results_df = pd.DataFrame(columns=['n_clusters', 'silhouette_avg'])
         n_rows = len(k_range)
         plt.figure(figsize=(10, 7 * n_rows))
@@ -47,7 +47,7 @@ class SilhouetteAnalysis:
         output_dir = 'output'
         if not os.path.exists(output_dir):
             os.makedirs(output_dir)
-        plot_path = os.path.join(output_dir, 'Combined_Silhouette_plot.png')
+        plot_path = os.path.join(output_dir, file_name)
         plt.savefig(plot_path)
         plt.close()
 
