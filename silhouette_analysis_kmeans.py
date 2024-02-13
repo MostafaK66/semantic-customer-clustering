@@ -14,7 +14,7 @@ class SilhouetteAnalysis:
     def __init__(self, random_state=settings.RANDOM_STATE, n_init='auto'):
         self.km = KMeans(init="k-means++", random_state=random_state, n_init=n_init)
 
-    def find_optimal_clusters(self, data, k_range):
+    def find_optimal_clusters(self, data, k_range, file_name):
         self.visualizer = KElbowVisualizer(self.km, k=k_range)
         self.visualizer.fit(data)
 
@@ -22,7 +22,7 @@ class SilhouetteAnalysis:
         if not os.path.exists(output_dir):
             os.makedirs(output_dir)
 
-        plot_path = os.path.join(output_dir, 'elbow_method_plot.png')
+        plot_path = os.path.join(output_dir, file_name)
         self.visualizer.show(outpath=plot_path)
         print(f"Elbow method plot saved to {plot_path}")
 

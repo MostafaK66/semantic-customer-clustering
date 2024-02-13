@@ -30,7 +30,7 @@ def main():
     data_no_outliers, data_with_outliers, indices_no_outliers, indices_with_outliers = detector.separate_data(data=data)
     filtered_df = detector.filter_outliers(df=df, index_with_outliers=indices_with_outliers)
     plotter.plot_ecdf(data, ['num__age', 'num__balance'])
-    silhoutte_analysis.find_optimal_clusters(data=data_no_outliers, k_range=settings.K_RANGE)
+    silhoutte_analysis.find_optimal_clusters(data=data_no_outliers, k_range=settings.K_RANGE, file_name='elbow_kmeans.png')
     silhoutte_results = silhoutte_analysis.perform_combined_silhouette_analysis(data_no_outliers, k_range=settings.K2_RANGE)
     kmeans_clustering.determine_optimal_clusters(silhoutte_results)
     clusters_predict = kmeans_clustering.fit_predict(data_no_outliers)
