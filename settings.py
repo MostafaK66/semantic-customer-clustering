@@ -13,6 +13,6 @@ MCA_N_ITER = 100
 TSNE_LEARNING_RATE = 500
 TSNE_PERPLEXITY = 200
 TSNE_N_ITER = 5000
-SAMPLING_FRACTION = 0.01
+SAMPLING_FRACTION = 0.99
 KPROTOTYPE_INIT = 'Huang'
 GAMMA = 2.55  #lower gamma give more priority to numerical culomns. Higher gamma give more priority to categorigal columns
