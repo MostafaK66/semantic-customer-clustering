@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.coverage
+.coverage.*
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+build/
+dist/
+htmlcov/
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Local data and generated artifacts
+data/
+output/
+*.rar
+*.zip
+*.log
+
+# Models and caches
+models/
+checkpoints/
+.cache/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+config.toml

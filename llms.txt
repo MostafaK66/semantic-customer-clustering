@@ -1,0 +1,13 @@
+# Semantic Customer Clustering
+
+- `src/semantic_customer_clustering/config.py`: immutable TOML configuration.
+- `src/semantic_customer_clustering/data.py`: CSV schema and feature preprocessing.
+- `src/semantic_customer_clustering/embedding.py`: SentenceTransformer boundary.
+- `src/semantic_customer_clustering/clustering.py`: K-means selection.
+- `src/semantic_customer_clustering/mixed.py`: optional K-Prototypes/Gower workflow.
+- `src/semantic_customer_clustering/outliers.py`: optional ECOD adapter.
+- `src/semantic_customer_clustering/projections.py`: aligned PCA and t-SNE.
+- `src/semantic_customer_clustering/artifacts.py`: CSV artifact persistence.
+- `src/semantic_customer_clustering/pipeline.py`: workflow orchestration.
+- `src/semantic_customer_clustering/cli.py`: thin command-line interface.
+- `tests/`: deterministic, offline unit and integration tests.

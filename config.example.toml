@@ -1,0 +1,30 @@
+output_dir = "output"
+
+[data]
+path = "data/train_data.csv"
+delimiter = ";"
+columns = ["age", "job", "marital", "education", "default", "balance", "housing", "loan"]
+categorical_columns = ["job", "marital", "education", "default", "housing", "loan"]
+ordinal_columns = ["education"]
+
+[clustering]
+candidates = [2, 3, 4]
+mixed_candidates = [2, 3, 4, 5, 6, 7, 8, 9]
+n_init = 10
+max_iter = 100
+random_state = 123
+contamination = 0.001
+mixed_gamma = 2.55
+mixed_init = "Huang"
+
+[projection]
+components = 3
+tsne_perplexity = 30.0
+tsne_max_iter = 1000
+sample_fraction = 1.0
+random_state = 123
+
+[semantic]
+model_name = "sentence-transformers/paraphrase-MiniLM-L6-v2"
+batch_size = 32
+show_progress = true
