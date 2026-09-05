@@ -1,0 +1,13 @@
+Semantic Customer Clustering
+Copyright (c) 2026 MostafaK66
+
+This repository is a production-oriented continuation of the original private
+"Clustering-with-LLM" project by MostafaK66. Its classical K-means,
+K-Prototypes, ECOD, PCA, t-SNE, and SentenceTransformer workflows were used as
+the behavioral baseline for this restructuring. ECOD remains available through an
+optional PyOD adapter; Isolation Forest is the portable default because PyOD's
+native Numba/LLVM dependency is not uniformly available on supported platforms.
+
+The original repository did not contain a license file. The owner has added
+the MIT License to this maintained version. Third-party packages and model
+weights remain governed by their respective licenses and are not bundled.
